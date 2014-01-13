@@ -5,23 +5,23 @@ get_dist_script () {
 import platform
 my_os = platform.system().lower()
 if my_os == 'darwin':
-  print 'max_os_x.sh'
+  print('max_os_x.sh')
 elif my_os == 'linux':
   dist,ver,_ = map(str.lower,getattr(platform,'linux_distribution',getattr(platform,'dist',lambda:('','','')))())
   if dist == 'ubuntu' or dist == 'linuxmint' or dist == '"elementary os"':
-    print 'ubuntu.sh'
+    print('ubuntu.sh')
   elif dist == 'debian':
-    print 'debian.sh'
+    print('debian.sh')
   elif dist == 'centos':
-    print 'centos_%s_x.sh' % (ver[0])
+    print('centos_%s_x.sh' % (ver[0]))
   elif dist == 'arch':
-    print 'arch.sh'
+    print('arch.sh')
   else:
-    print 'UNSUPPORTED_LINUX_' + dist
+    print('UNSUPPORTED_LINUX_' + dist)
 elif my_os == 'windows':
-  print 'windows.ps1'
+  print('windows.ps1')
 else:
-  print 'UNSUPPORTED_PLATFORM_' + my_os
+  print('UNSUPPORTED_PLATFORM_' + my_os)
 EOFSCRIPT
 )
 }
