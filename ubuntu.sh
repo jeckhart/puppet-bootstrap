@@ -11,7 +11,6 @@ case "$DISTRIB_CODENAME" in
   luna|maya) DISTRIB_CODENAME=precise;;
   nadia) DISTRIB_CODENAME=quantal;;
   olivia) DISTRIB_CODENAME=raring;;
-  saucy) DISTRIB_CODENAME=raring;;
 esac
 
 REPO_DEB_URL="http://apt.puppetlabs.com/puppetlabs-release-${DISTRIB_CODENAME}.deb"
