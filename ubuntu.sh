@@ -51,6 +51,9 @@ echo "Puppet installed!"
 
 # Install RubyGems for the provider
 echo "Installing RubyGems..."
-apt-get install -y rubygems >/dev/null
+case "$DISTIB_CODENAME" in
+  trusty) ;;
+  *) apt-get install -y rubygems >/dev/null;;
+esac
 gem install --no-ri --no-rdoc rubygems-update
 update_rubygems >/dev/null 2>&1
