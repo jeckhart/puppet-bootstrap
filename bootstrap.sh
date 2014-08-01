@@ -26,13 +26,12 @@ EOFSCRIPT
 )
 }
 
-sudo -n -v > /dev/null 2>&1
-ret=$?
-if [ $ret != 0 ]; then
+USERID=`sudo -n sh -c "( echo \\$UID )" 2>/dev/null`
+if [ "x$USERID" != "x0" ]; then
   echo "This script must be run as root."
   echo "Usage:"
   echo "  sudo bootstrap.sh"
-  exit $ret
+  exit -1
 fi
 
 dist=`get_dist_script`
