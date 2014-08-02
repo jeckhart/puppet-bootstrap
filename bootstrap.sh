@@ -26,8 +26,7 @@ EOFSCRIPT
 )
 }
 
-USERID=`sudo -n sh -c "( echo \\$UID )" 2>/dev/null`
-if [ "x$USERID" != "x0" ]; then
+if [ "x$UID" != "x0" ]; then
   echo "This script must be run as root."
   echo "Usage:"
   echo "  sudo bootstrap.sh"
@@ -40,7 +39,7 @@ script=`mktemp`
 wget --output-document=${script} --output-file=/dev/null "https://raw.github.com/jeckhart/puppet-bootstrap/master/$dist"
 chmod +x $script
 
-sudo -n $script
+$script
 ret=$?
 if [ $ret = 0 ]; then
   echo "bootstrap was successful"
