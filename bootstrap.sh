@@ -35,9 +35,13 @@ fi
 
 dist=`get_dist_script`
 
-script=`mktemp`
-wget --output-document=${script} --output-file=/dev/null "https://raw.github.com/jeckhart/puppet-bootstrap/master/$dist"
-chmod +x $script
+script=`mktemp -t tmp.XXXXXXXXXX`
+if ( which curl > /dev/null ); then
+  curl -L --output "${script}" "https://raw.github.com/jeckhart/puppet-bootstrap/master/$dist"
+else
+  wget --output-document="${script}" --output-file=/dev/null "https://raw.github.com/jeckhart/puppet-bootstrap/master/$dist"
+fi
+chmod +x "$script"
 
 $script
 ret=$?
