@@ -5,7 +5,7 @@ get_dist_script () {
 import platform
 my_os = platform.system().lower()
 if my_os == 'darwin':
-  print('max_os_x.sh')
+  print('mac_os_x.sh')
 elif my_os == 'linux':
   dist,ver,_ = map(str.lower,getattr(platform,'linux_distribution',getattr(platform,'dist',lambda:('','','')))())
   if dist == 'ubuntu' or dist == 'linuxmint' or dist == '"elementary os"':
