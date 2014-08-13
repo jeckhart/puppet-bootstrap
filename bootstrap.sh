@@ -26,7 +26,8 @@ EOFSCRIPT
 )
 }
 
-if [ "x$UID" != "x0" ]; then
+
+if [ "x`id -u`" != "x0" ]; then
   echo "This script must be run as root."
   echo "Usage:"
   echo "  sudo bootstrap.sh"
