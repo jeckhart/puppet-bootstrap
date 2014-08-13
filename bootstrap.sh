@@ -30,7 +30,7 @@ if [ "x$UID" != "x0" ]; then
   echo "This script must be run as root."
   echo "Usage:"
   echo "  sudo bootstrap.sh"
-  exit -1
+  exit 1
 fi
 
 dist=`get_dist_script`
