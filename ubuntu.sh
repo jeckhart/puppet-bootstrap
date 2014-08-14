@@ -23,7 +23,7 @@ if [ "$(id -u)" != "0" ]; then
   exit 1
 fi
 
-if which puppet > /dev/null 2>&1; then
+if which puppet > /dev/null 2>&1 -a apt-cache policy | grep --quiet apt.puppetlabs.com; then
   echo "Puppet is already installed."
   exit 0
 fi
@@ -45,15 +45,14 @@ apt-get update >/dev/null
 
 # Install Puppet
 echo "Installing Puppet..."
-apt-get install -y puppet >/dev/null
+DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install puppet >/dev/null
 
 echo "Puppet installed!"
 
 # Install RubyGems for the provider
 echo "Installing RubyGems..."
-case "$DISTRIB_CODENAME" in
-  trusty) ;;
-  *) apt-get install -y rubygems >/dev/null;;
-esac
+if [ $DISTRIB_CODENAME != "trusty" ]; then
+  apt-get install -y rubygems >/dev/null
+fi
 gem install --no-ri --no-rdoc rubygems-update
 update_rubygems >/dev/null 2>&1
